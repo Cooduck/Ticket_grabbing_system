@@ -3,7 +3,7 @@
 
 # 配置
 python环境配置详见requirements.txt
-同时还要确保电脑有安装Google Chrome和Chromedriver,Chromedriver的下载与安装位置详见https://chromedriver.chromium.org/downloads和https://blog.csdn.net/weixin_45798684/article/details/105356932，注意Google Chrome和Chromedriver的版本需匹配
+同时还要确保电脑有安装Google Chrome和Chromedriver,Chromedriver的下载与安装位置详见https://chromedriver.chromium.org/downloads 和 https://blog.csdn.net/weixin_45798684/article/details/105356932 ，注意Google Chrome和Chromedriver的版本需匹配
 
 # 运行
 运行前请先将main.py中以下代码信息填写
