@@ -1,0 +1,7 @@
+certifi @ file:///C:/b/abs_35d7n66oz9/croot/certifi_1707229248467/work/certifi
+packaging==23.2
+python-dotenv==1.0.1
+schedule==1.2.1
+selenium==3.141.0
+urllib3==1.26.2
+webdriver-manager==4.0.1
