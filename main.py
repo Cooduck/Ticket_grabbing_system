@@ -1,6 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import schedule
 import time
 import sys
@@ -23,20 +25,25 @@ def Login():
     driver.find_element_by_id("username").send_keys(username)
     driver.find_element_by_id("password").send_keys(password)
     driver.find_element_by_class_name("auth_login_btn").click()
-    time.sleep(5)
 
 def Select():
     """选择时间并从可选的球场中选场"""
-    driver.find_element_by_xpath("//div[text()='粤海校区']").click()
-    time.sleep(1)
 
-    driver.find_element_by_xpath("//div[text()='羽毛球']").click()
-    time.sleep(2)
+    wait = WebDriverWait(driver, 10)
+    element = wait.until(EC.visibility_of_element_located((By.XPATH, "//div[text()='粤海校区']")))
+    element.click()
 
-    driver.find_element_by_xpath("//div[@class='ellipse-5']").click()
+    wait = WebDriverWait(driver, 10)
+    element = wait.until(EC.visibility_of_element_located((By.XPATH, "//div[text()='羽毛球']")))
+    element.click()
 
-    driver.find_element_by_xpath(f"//div[text()='{appointment}']").click()
-    time.sleep(1)
+    # wait = WebDriverWait(driver, 10)
+    # element = wait.until(EC.visibility_of_element_located((By.XPATH, "/div[@class='ellipse-5']")))
+    # element.click()
+
+    wait = WebDriverWait(driver, 10)
+    element = wait.until(EC.visibility_of_element_located((By.XPATH, f"//div[text()='{appointment}']")))
+    element.click()
 
     buttons = driver.find_elements(By.CSS_SELECTOR, ".group-2")
     for button in buttons:
@@ -44,33 +51,40 @@ def Select():
             button.click()
             break
 
-    driver.find_element_by_xpath("//button[text()='提交预约']").click()
-    time.sleep(8)
+    wait = WebDriverWait(driver, 10)
+    element = wait.until(EC.visibility_of_element_located((By.XPATH, "//button[text()='提交预约']")))
+    element.click()
 
 def Add_companions():
     """添加同行人"""
-    driver.find_element_by_xpath("//a[text()='同行人']").click()
-    time.sleep(1)
+    wait = WebDriverWait(driver, 10)
+    element = wait.until(EC.visibility_of_element_located((By.XPATH, "//a[text()='同行人']")))
+    element.click()
 
     for companion_id in companions_id:
-        driver.find_element_by_xpath("//button[text()='添加同行人']").click()
+        wait = WebDriverWait(driver, 10)
+        element = wait.until(EC.visibility_of_element_located((By.XPATH, "//button[text()='添加同行人']")))
+        element.click()
         time.sleep(1)
 
         driver.find_element_by_id("searchId").send_keys(companion_id)
         driver.find_element_by_xpath("//div[text()='查询']").click()
-        time.sleep(3)
 
-        driver.find_element_by_xpath("//button[text()='确定']").click()
-        time.sleep(1)
+        wait = WebDriverWait(driver, 10)
+        element = wait.until(EC.visibility_of_element_located((By.XPATH, "//button[text()='确定']")))
+        element.click()
 
-    driver.find_element(By.CLASS_NAME, "jqx-window-close-button").click()
-    time.sleep(1)
+    wait = WebDriverWait(driver, 10)
+    element = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "jqx-window-close-button")))
+    element.click()
 
 def Pay():
     """通过体育经费支付"""
-    driver.find_element_by_xpath("//a[text()='未支付']").click()
-    time.sleep(1)
+    wait = WebDriverWait(driver, 10)
+    element = wait.until(EC.visibility_of_element_located((By.XPATH, "//a[text()='未支付']")))
+    element.click()
 
+    time.sleep(1)
     try:
         button = driver.find_element_by_xpath("//button[text()='(体育经费)支付']")
         button.click()
@@ -84,17 +98,21 @@ def Pay():
     window_handles = driver.window_handles
     driver.switch_to.window(window_handles[-1])
 
-    driver.find_element_by_id("btnNext").click()
-    time.sleep(1)
+    wait = WebDriverWait(driver, 10)
+    element = wait.until(EC.visibility_of_element_located((By.ID, "btnNext")))
+    element.click()
 
-    driver.find_element_by_id("password").click()
-    time.sleep(1)
+    wait = WebDriverWait(driver, 10)
+    element = wait.until(EC.visibility_of_element_located((By.ID, "password")))
+    element.click()
 
+    time.sleep(1)
     for ele in payment_password:
         driver.find_element(By.CLASS_NAME, f"key-button.key-{ele}").click()
 
-    driver.find_element_by_xpath("//button[text()='确认支付']").click()
-    time.sleep(1)
+    wait = WebDriverWait(driver, 10)
+    element = wait.until(EC.visibility_of_element_located((By.XPATH, "//button[text()='确认支付']")))
+    element.click()
 
 def Work():
     Login()
