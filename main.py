@@ -140,7 +140,7 @@ def Work():
     print('预约并支付成功')
     sys.exit()
 
-schedule.every().day.at("12:30").do(Work)   # 12:00自动开始预约
+schedule.every().day.at("12:30").do(Work)   # 12:30自动开始预约
 
 if __name__ == "__main__":
     while True:
