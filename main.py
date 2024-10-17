@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from datetime import datetime, timedelta
 import schedule
 import time
 import sys
@@ -10,21 +11,38 @@ import sys
 url = 'https://ehall.szu.edu.cn/qljfwapp/sys/lwSzuCgyy/index.do?t_s=1709183352309#/sportVenue'
 chromedriver = r"C:\Program Files\Google\Chrome\Application\chromedriver.exe"    # 需要填入自己电脑chromedriver的地址
 driver = webdriver.Chrome(executable_path=chromedriver)
+next_day = (datetime.now() + timedelta(days=1)).strftime('%Y-%m-%d')
 
 # 以下是必填的信息
 username = "XXXXXXXXXX"             # 深圳大学统一认证的账号
 password = "XXXXXXXXXX"             # 深圳大学统一认证的密码
-appointment = 'XX:00-XX:00(可预约)'  # 想要预约的时间,格式为'XX:00-XX:00(可预约)',如'08:00-09:00(可预约)'或'18:00-19:00(可预约)'
+appointment = '09:00-10:00(可预约)'  # 想要预约的时间,格式为'XX:00-XX:00(可预约)',如'08:00-09:00(可预约)'或'18:00-19:00(可预约)'
 payment_password = 'XXXXXXXXXX'     # 支付体育经费的密码
-companions_id = ['XXXXXXXXXX']      # 同行人的校园卡号或学号，可填多个同行人，格式为['XXXXXXXXXX','XXXXXXXXXX',……]
+companions_id = []      # 同行人的校园卡号或学号，可填多个同行人，格式为['XXXXXXXXXX','XXXXXXXXXX',……]，列表为空则不添加同行人
 
 
 def Login():
     """登录"""
     driver.get(url)
-    driver.find_element_by_id("username").send_keys(username)
-    driver.find_element_by_id("password").send_keys(password)
-    driver.find_element_by_class_name("auth_login_btn").click()
+
+    # 查找用户名输入框并输入用户名
+    wait = WebDriverWait(driver, 10)
+    username_input = wait.until(EC.presence_of_element_located((By.ID, "username")))
+    username_input.send_keys(username)
+
+    # 使用JavaScript将变量 password 的值输入到密码框中
+    driver.execute_script("document.getElementById('password').value=arguments[0];", password)
+
+    # 确保密码框的值已经更新为你输入的密码
+    WebDriverWait(driver, 10).until(
+        EC.text_to_be_present_in_element_value((By.ID, "password"), password)
+    )
+
+    # 等待登录按钮加载最多10秒并点击
+    login_button = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.ID, "login_submit"))
+    )
+    driver.execute_script("arguments[0].click();", login_button)
 
 def Select():
     """选择时间并从可选的球场中选场"""
@@ -37,9 +55,9 @@ def Select():
     element = wait.until(EC.visibility_of_element_located((By.XPATH, "//div[text()='羽毛球']")))
     element.click()
 
-    # wait = WebDriverWait(driver, 10)
-    # element = wait.until(EC.visibility_of_element_located((By.XPATH, "/div[@class='ellipse-5']")))
-    # element.click()
+    wait = WebDriverWait(driver, 10)
+    element = wait.until(EC.element_to_be_clickable((By.XPATH, f"//label[@for='{next_day}']")))
+    element.click()
 
     wait = WebDriverWait(driver, 10)
     element = wait.until(EC.visibility_of_element_located((By.XPATH, f"//div[text()='{appointment}']")))
@@ -122,7 +140,7 @@ def Work():
     print('预约并支付成功')
     sys.exit()
 
-schedule.every().day.at("12:00").do(Work)   # 12:00自动开始预约
+schedule.every().day.at("12:30").do(Work)   # 12:00自动开始预约
 
 if __name__ == "__main__":
     while True:
