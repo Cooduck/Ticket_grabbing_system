@@ -22,5 +22,5 @@ companions_id=
 
 # 两种运行方式
 1、自己搭建python环境然后运行脚本main.py，main.py要和information.txt在同一目录下  
-2、直接运行main.exe，main.exe要和information.txt在同一目录下  
+2、直接运行main.exe，main.exe要和information.txt在同一目录下(生成exe的方式请参考 https://blog.csdn.net/libaineu2004/article/details/112612421)  
 
