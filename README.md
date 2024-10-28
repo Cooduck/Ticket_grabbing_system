@@ -18,4 +18,9 @@ payment_password=
 companions_id=
 ```
 填写完成后，在当天12:30前运行脚本，脚本会一直运行，直到12:30时开始并完成抢场才运行结束，若抢场成功，会显示“预约并支付成功”。  
-在当天12:30后运行脚本，也可以对场地进行预约
+在当天12:30后运行脚本，也可以对场地进行预约  
+
+# 两种运行方式
+1、自己搭建python环境然后运行脚本main.py，main.py要和information.txt在同一目录下  
+2、直接运行main.exe，main.exe要和information.txt在同一目录下  
+
