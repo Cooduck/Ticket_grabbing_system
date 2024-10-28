@@ -1,0 +1,27 @@
+# 可选校区campus：粤海校区、丽湖校区
+# 可选球类ball：羽毛球、网球
+# 粤海校区羽毛球可选场馆venues：运动广场东馆羽毛球场、运动广场东馆羽毛球场（教工专场）、全部
+# 粤海校区网球可选场馆venues：运动广场海边网球场、北区网球场、全部
+# 丽湖校区羽毛球可选场馆venues：至畅体育馆、至快体育馆、全部
+# 丽湖校区网球可选场馆venues：北区体育场网球场、南区室外网球场、全部
+
+# 例子：
+# chromedriver=C:\Program Files\Google\Chrome\Application\chromedriver.exe  # 需要填入自己电脑chromedriver的地址
+# username=2022123456   # 深圳大学统一认证的账号
+# password=2022123456   # 深圳大学统一认证的密码
+# campus=丽湖校区   # 预约校区，格式为XX校区
+# ball=羽毛球      # 球类
+# appointment=09:00-10:00(可预约)  # 想要预约的时间，格式为'XX:00-XX:00(可预约)'，如'08:00-09:00(可预约)'或'18:00-19:00(可预约)'
+# venues=至快体育馆  # 预约场馆
+# payment_password=123456   # 支付体育经费的密码
+# companions_id=456789,789123   # 同行人的校园卡号或学号，可填多个同行人，格式为'XXXXXXXXXX,XXXXXXXXXX,……'，注意同行人隔开要用英文逗号，为空则不添加同行人
+
+chromedriver=C:\Program Files\Google\Chrome\Application\chromedriver.exe
+username=
+password=
+campus=
+ball=
+appointment=
+venues=
+payment_password=
+companions_id=
