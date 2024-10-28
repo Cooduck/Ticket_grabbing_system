@@ -16,7 +16,7 @@
 # payment_password=123456   # 支付体育经费的密码
 # companions_id=456789,789123   # 同行人的校园卡号或学号，可填多个同行人，格式为'XXXXXXXXXX,XXXXXXXXXX,……'，注意同行人隔开要用英文逗号，为空则不添加同行人
 
-chromedriver=C:\Program Files\Google\Chrome\Application\chromedriver.exe
+chromedriver=
 username=
 password=
 campus=
