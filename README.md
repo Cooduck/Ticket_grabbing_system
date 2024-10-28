@@ -5,18 +5,17 @@
 python环境配置详见requirements.txt，同时还要确保电脑有安装Google Chrome和Chromedriver,Chromedriver的下载与安装位置详见 https://googlechromelabs.github.io/chrome-for-testing/ 和 https://blog.csdn.net/weixin_45798684/article/details/105356932 ，注意Google Chrome和Chromedriver的版本需匹配。
 
 # 运行
-运行前请先将main.py中以下代码信息填写   
+运行前请先将information.txt中以下信息填写，具体要求看文件内介绍，注意要严格按照要求填写信息（若程序运行错误，很可能是信息没按照格式填写）   
 ```
-例子：
-chromedriver=C:\Program Files\Google\Chrome\Application\chromedriver.exe  # 需要填入自己电脑chromedriver的地址
-username=2022123456   # 深圳大学统一认证的账号
-password=2022123456   # 深圳大学统一认证的密码
-campus=丽湖校区   # 预约校区，格式为XX校区
-ball=羽毛球      # 球类
-appointment=09:00-10:00(可预约)  # 想要预约的时间，格式为'XX:00-XX:00(可预约)'，如'08:00-09:00(可预约)'或'18:00-19:00(可预约)'
-venues=至快体育馆  # 预约场馆
-payment_password=123456   # 支付体育经费的密码
-companions_id=456789,789123   # 同行人的校园卡号或学号，可填多个同行人，格式为'XXXXXXXXXX,XXXXXXXXXX,……'，注意同行人隔开要用英文逗号，为空则不添加同行人
+chromedriver=
+username=
+password=
+campus=
+ball=
+appointment=
+venues=
+payment_password=
+companions_id=
 ```
 填写完成后，在当天12:30前运行脚本，脚本会一直运行，直到12:30时开始并完成抢场才运行结束，若抢场成功，会显示“预约并支付成功”。  
 在当天12:30后运行脚本，也可以对场地进行预约
