@@ -158,14 +158,15 @@ def Work():
     if payment_password:
         Pay()
     print('预约并支付成功')
-    sys.exit()
 
 
 def check_time_and_run():
     current_time = datetime.now().time()
     target_time = datetime.strptime("12:30:00", "%H:%M:%S").time()
     if current_time >= target_time:
-        Work()
+        return True
+    else:
+        return False
 
 if __name__ == "__main__":
     # 创建字典来存储配置信息
@@ -213,6 +214,7 @@ if __name__ == "__main__":
             break
         else:
             time.sleep(1)
+    sys.exit()
 
 
 
