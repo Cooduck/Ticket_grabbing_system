@@ -33,8 +33,13 @@ def Login():
     driver.get(url)
 
     # 查找用户名输入框并输入用户名
-    wait = WebDriverWait(driver, 10)
-    username_input = wait.until(EC.presence_of_element_located((By.ID, "username")))
+    # wait = WebDriverWait(driver, 10)
+    # username_input = wait.until(EC.presence_of_element_located((By.ID, "username")))
+    # username_input.send_keys(username)
+
+    username_input = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.ID, "username"))
+    )
     username_input.send_keys(username)
 
     # 使用JavaScript将变量 password 的值输入到密码框中
